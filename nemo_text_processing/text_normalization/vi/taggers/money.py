@@ -26,10 +26,10 @@ from nemo_text_processing.text_normalization.vi.graph_utils import (
 )
 from nemo_text_processing.text_normalization.vi.utils import get_abs_path, load_labels
 
-min_singular = pynini.string_file(get_abs_path("data/money/currency_minor_singular.tsv"))
-min_plural = pynini.string_file(get_abs_path("data/money/currency_minor_plural.tsv"))
-maj_singular = pynini.string_file((get_abs_path("data/money/currency_major.tsv")))
-per_units = pynini.string_file(get_abs_path("data/money/per_unit.tsv"))
+min_singular = pynini.string_file(get_abs_path("./nemo_text_processing/text_normalization/vi/data/money/currency_minor_singular.tsv"))
+min_plural = pynini.string_file(get_abs_path("./nemo_text_processing/text_normalization/vi/data/money/currency_minor_plural.tsv"))
+maj_singular = pynini.string_file((get_abs_path("./nemo_text_processing/text_normalization/vi/data/money/currency_major.tsv")))
+per_units = pynini.string_file(get_abs_path("./nemo_text_processing/text_normalization/vi/data/money/per_unit.tsv"))
 
 
 class MoneyFst(GraphFst):
