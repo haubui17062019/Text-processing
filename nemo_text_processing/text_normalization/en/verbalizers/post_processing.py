@@ -17,7 +17,7 @@ import os
 import pynini
 from pynini.lib import pynutil
 
-from nemo_text_processing.text_normalization.vi.graph_utils import (
+from nemo_text_processing.text_normalization.en.graph_utils import (
     MIN_NEG_WEIGHT,
     NEMO_ALPHA,
     NEMO_CHAR,
@@ -25,7 +25,7 @@ from nemo_text_processing.text_normalization.vi.graph_utils import (
     NEMO_SPACE,
     generator_main,
 )
-from nemo_text_processing.text_normalization.vi.taggers.punctuation import PunctuationFst
+from nemo_text_processing.text_normalization.en.taggers.punctuation import PunctuationFst
 from nemo_text_processing.utils.logging import logger
 
 
