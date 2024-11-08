@@ -15,7 +15,7 @@
 import pynini
 from pynini.lib import pynutil
 
-from nemo_text_processing.text_normalization.en.graph_utils import (
+from nemo_text_processing.text_normalization.vi.graph_utils import (
     NEMO_ALPHA,
     NEMO_DIGIT,
     NEMO_SIGMA,
@@ -25,7 +25,7 @@ from nemo_text_processing.text_normalization.en.graph_utils import (
     insert_space,
     plurals,
 )
-from nemo_text_processing.text_normalization.en.utils import get_abs_path
+from nemo_text_processing.text_normalization.vi.utils import get_abs_path
 
 
 class TelephoneFst(GraphFst):

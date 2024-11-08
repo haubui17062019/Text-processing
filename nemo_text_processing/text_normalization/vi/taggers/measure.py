@@ -16,7 +16,7 @@ import pynini
 from pynini.examples import plurals
 from pynini.lib import pynutil
 
-from nemo_text_processing.text_normalization.en.graph_utils import (
+from nemo_text_processing.text_normalization.vi.graph_utils import (
     NEMO_ALPHA,
     NEMO_DIGIT,
     NEMO_NON_BREAKING_SPACE,
@@ -31,10 +31,10 @@ from nemo_text_processing.text_normalization.en.graph_utils import (
     delete_zero_or_one_space,
     insert_space,
 )
-from nemo_text_processing.text_normalization.en.taggers.ordinal import OrdinalFst as OrdinalTagger
-from nemo_text_processing.text_normalization.en.taggers.whitelist import get_formats
-from nemo_text_processing.text_normalization.en.utils import get_abs_path, load_labels
-from nemo_text_processing.text_normalization.en.verbalizers.ordinal import OrdinalFst as OrdinalVerbalizer
+from nemo_text_processing.text_normalization.vi.taggers.ordinal import OrdinalFst as OrdinalTagger
+from nemo_text_processing.text_normalization.vi.taggers.whitelist import get_formats
+from nemo_text_processing.text_normalization.vi.utils import get_abs_path, load_labels
+from nemo_text_processing.text_normalization.vi.verbalizers.ordinal import OrdinalFst as OrdinalVerbalizer
 
 
 class MeasureFst(GraphFst):

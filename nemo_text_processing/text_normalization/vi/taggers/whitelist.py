@@ -15,7 +15,7 @@
 import pynini
 from pynini.lib import pynutil
 
-from nemo_text_processing.text_normalization.en.graph_utils import (
+from nemo_text_processing.text_normalization.vi.graph_utils import (
     INPUT_CASED,
     INPUT_LOWER_CASED,
     NEMO_CHAR,
@@ -26,8 +26,8 @@ from nemo_text_processing.text_normalization.en.graph_utils import (
     GraphFst,
     convert_space,
 )
-from nemo_text_processing.text_normalization.en.taggers.roman import get_names
-from nemo_text_processing.text_normalization.en.utils import (
+from nemo_text_processing.text_normalization.vi.taggers.roman import get_names
+from nemo_text_processing.text_normalization.vi.utils import (
     augment_labels_with_punct_at_end,
     get_abs_path,
     load_labels,

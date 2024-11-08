@@ -17,7 +17,7 @@ import os
 import pynini
 from pynini.lib import pynutil
 
-from nemo_text_processing.text_normalization.en.graph_utils import (
+from nemo_text_processing.text_normalization.vi.graph_utils import (
     NEMO_CHAR,
     NEMO_DIGIT,
     NEMO_NOT_SPACE,
@@ -27,36 +27,36 @@ from nemo_text_processing.text_normalization.en.graph_utils import (
     delete_space,
     generator_main,
 )
-from nemo_text_processing.text_normalization.en.taggers.abbreviation import AbbreviationFst
-from nemo_text_processing.text_normalization.en.taggers.cardinal import CardinalFst
-from nemo_text_processing.text_normalization.en.taggers.date import DateFst
-from nemo_text_processing.text_normalization.en.taggers.decimal import DecimalFst
-from nemo_text_processing.text_normalization.en.taggers.electronic import ElectronicFst
-from nemo_text_processing.text_normalization.en.taggers.fraction import FractionFst
-from nemo_text_processing.text_normalization.en.taggers.measure import MeasureFst
-from nemo_text_processing.text_normalization.en.taggers.money import MoneyFst
-from nemo_text_processing.text_normalization.en.taggers.ordinal import OrdinalFst
-from nemo_text_processing.text_normalization.en.taggers.punctuation import PunctuationFst
-from nemo_text_processing.text_normalization.en.taggers.range import RangeFst as RangeFst
-from nemo_text_processing.text_normalization.en.taggers.roman import RomanFst
-from nemo_text_processing.text_normalization.en.taggers.serial import SerialFst
-from nemo_text_processing.text_normalization.en.taggers.telephone import TelephoneFst
-from nemo_text_processing.text_normalization.en.taggers.time import TimeFst
-from nemo_text_processing.text_normalization.en.taggers.whitelist import WhiteListFst
-from nemo_text_processing.text_normalization.en.taggers.word import WordFst
-from nemo_text_processing.text_normalization.en.verbalizers.abbreviation import AbbreviationFst as vAbbreviation
-from nemo_text_processing.text_normalization.en.verbalizers.cardinal import CardinalFst as vCardinal
-from nemo_text_processing.text_normalization.en.verbalizers.date import DateFst as vDate
-from nemo_text_processing.text_normalization.en.verbalizers.decimal import DecimalFst as vDecimal
-from nemo_text_processing.text_normalization.en.verbalizers.electronic import ElectronicFst as vElectronic
-from nemo_text_processing.text_normalization.en.verbalizers.fraction import FractionFst as vFraction
-from nemo_text_processing.text_normalization.en.verbalizers.measure import MeasureFst as vMeasure
-from nemo_text_processing.text_normalization.en.verbalizers.money import MoneyFst as vMoney
-from nemo_text_processing.text_normalization.en.verbalizers.ordinal import OrdinalFst as vOrdinal
-from nemo_text_processing.text_normalization.en.verbalizers.roman import RomanFst as vRoman
-from nemo_text_processing.text_normalization.en.verbalizers.telephone import TelephoneFst as vTelephone
-from nemo_text_processing.text_normalization.en.verbalizers.time import TimeFst as vTime
-from nemo_text_processing.text_normalization.en.verbalizers.word import WordFst as vWord
+from nemo_text_processing.text_normalization.vi.taggers.abbreviation import AbbreviationFst
+from nemo_text_processing.text_normalization.vi.taggers.cardinal import CardinalFst
+from nemo_text_processing.text_normalization.vi.taggers.date import DateFst
+from nemo_text_processing.text_normalization.vi.taggers.decimal import DecimalFst
+from nemo_text_processing.text_normalization.vi.taggers.electronic import ElectronicFst
+from nemo_text_processing.text_normalization.vi.taggers.fraction import FractionFst
+from nemo_text_processing.text_normalization.vi.taggers.measure import MeasureFst
+from nemo_text_processing.text_normalization.vi.taggers.money import MoneyFst
+from nemo_text_processing.text_normalization.vi.taggers.ordinal import OrdinalFst
+from nemo_text_processing.text_normalization.vi.taggers.punctuation import PunctuationFst
+from nemo_text_processing.text_normalization.vi.taggers.range import RangeFst as RangeFst
+from nemo_text_processing.text_normalization.vi.taggers.roman import RomanFst
+from nemo_text_processing.text_normalization.vi.taggers.serial import SerialFst
+from nemo_text_processing.text_normalization.vi.taggers.telephone import TelephoneFst
+from nemo_text_processing.text_normalization.vi.taggers.time import TimeFst
+from nemo_text_processing.text_normalization.vi.taggers.whitelist import WhiteListFst
+from nemo_text_processing.text_normalization.vi.taggers.word import WordFst
+from nemo_text_processing.text_normalization.vi.verbalizers.abbreviation import AbbreviationFst as vAbbreviation
+from nemo_text_processing.text_normalization.vi.verbalizers.cardinal import CardinalFst as vCardinal
+from nemo_text_processing.text_normalization.vi.verbalizers.date import DateFst as vDate
+from nemo_text_processing.text_normalization.vi.verbalizers.decimal import DecimalFst as vDecimal
+from nemo_text_processing.text_normalization.vi.verbalizers.electronic import ElectronicFst as vElectronic
+from nemo_text_processing.text_normalization.vi.verbalizers.fraction import FractionFst as vFraction
+from nemo_text_processing.text_normalization.vi.verbalizers.measure import MeasureFst as vMeasure
+from nemo_text_processing.text_normalization.vi.verbalizers.money import MoneyFst as vMoney
+from nemo_text_processing.text_normalization.vi.verbalizers.ordinal import OrdinalFst as vOrdinal
+from nemo_text_processing.text_normalization.vi.verbalizers.roman import RomanFst as vRoman
+from nemo_text_processing.text_normalization.vi.verbalizers.telephone import TelephoneFst as vTelephone
+from nemo_text_processing.text_normalization.vi.verbalizers.time import TimeFst as vTime
+from nemo_text_processing.text_normalization.vi.verbalizers.word import WordFst as vWord
 from nemo_text_processing.utils.logging import logger
 
 

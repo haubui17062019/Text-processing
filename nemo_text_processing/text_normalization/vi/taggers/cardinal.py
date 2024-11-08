@@ -17,15 +17,15 @@ import pynini
 from pynini.examples import plurals
 from pynini.lib import pynutil
 
-from nemo_text_processing.text_normalization.en.graph_utils import (
+from nemo_text_processing.text_normalization.vi.graph_utils import (
     NEMO_DIGIT,
     NEMO_NOT_QUOTE,
     NEMO_SIGMA,
     GraphFst,
     insert_space,
 )
-from nemo_text_processing.text_normalization.en.taggers.date import get_four_digit_year_graph
-from nemo_text_processing.text_normalization.en.utils import get_abs_path
+from nemo_text_processing.text_normalization.vi.taggers.date import get_four_digit_year_graph
+from nemo_text_processing.text_normalization.vi.utils import get_abs_path
 
 
 class CardinalFst(GraphFst):

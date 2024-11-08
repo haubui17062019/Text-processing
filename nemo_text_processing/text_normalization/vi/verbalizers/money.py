@@ -15,14 +15,14 @@
 import pynini
 from pynini.lib import pynutil
 
-from nemo_text_processing.text_normalization.en.graph_utils import (
+from nemo_text_processing.text_normalization.vi.graph_utils import (
     NEMO_NOT_QUOTE,
     GraphFst,
     delete_extra_space,
     delete_preserve_order,
 )
 
-from nemo_text_processing.text_normalization.en.utils import get_abs_path
+from nemo_text_processing.text_normalization.vi.utils import get_abs_path
 
 per_units = pynini.string_file(get_abs_path("data/money/per_unit.tsv"))
 

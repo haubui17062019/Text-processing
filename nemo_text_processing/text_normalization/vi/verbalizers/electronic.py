@@ -16,7 +16,7 @@ import pynini
 from pynini.examples import plurals
 from pynini.lib import pynutil
 
-from nemo_text_processing.text_normalization.en.graph_utils import (
+from nemo_text_processing.text_normalization.vi.graph_utils import (
     MIN_NEG_WEIGHT,
     NEMO_ALPHA,
     NEMO_CHAR,
@@ -30,7 +30,7 @@ from nemo_text_processing.text_normalization.en.graph_utils import (
     delete_space,
     insert_space,
 )
-from nemo_text_processing.text_normalization.en.utils import get_abs_path
+from nemo_text_processing.text_normalization.vi.utils import get_abs_path
 
 
 class ElectronicFst(GraphFst):
