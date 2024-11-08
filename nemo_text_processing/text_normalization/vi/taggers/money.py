@@ -56,7 +56,8 @@ class MoneyFst(GraphFst):
         cardinal_graph = cardinal.graph_with_and
         graph_decimal_final = decimal.final_graph_wo_negative_w_abbr
 
-        maj_singular_labels = load_labels(get_abs_path("data/money/currency_major.tsv"))
+        # maj_singular_labels = load_labels(get_abs_path("data/money/currency_major.tsv"))
+        maj_singular_labels = load_labels("./nemo_text_processing/text_normalization/vi/data/money/currency_major.tsv")
         maj_unit_plural = convert_space(maj_singular @ SINGULAR_TO_PLURAL)
         maj_unit_singular = convert_space(maj_singular)
 
