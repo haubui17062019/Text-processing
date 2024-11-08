@@ -1,9 +1,8 @@
-from nemo_text_processing.text_normalization.normalize import Normalizer
-normalizer = Normalizer(input_case='cased', lang='en')
+import csv
 
+with open("./nemo_text_processing/text_normalization/vi/data/address/address_word.tsv", encoding="utf-8") as label_tsv:
+    labels = list(csv.reader(label_tsv, delimiter="\t"))
 
-
-written = "We paid $123 for this desk."
-normalized = normalizer.normalize(written, verbose=True, punct_post_process=True)
-print(normalized)
-
+for x, y in labels:
+    pass
+print(labels[0])    
