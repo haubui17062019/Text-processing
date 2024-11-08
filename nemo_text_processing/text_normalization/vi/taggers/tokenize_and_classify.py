@@ -40,7 +40,7 @@ from nemo_text_processing.text_normalization.vi.taggers.roman import RomanFst
 from nemo_text_processing.text_normalization.vi.taggers.serial import SerialFst
 from nemo_text_processing.text_normalization.vi.taggers.telephone import TelephoneFst
 from nemo_text_processing.text_normalization.vi.taggers.time import TimeFst
-# from nemo_text_processing.text_normalization.vi.taggers.whitelist import WhiteListFst
+from nemo_text_processing.text_normalization.vi.taggers.whitelist import WhiteListFst
 from nemo_text_processing.text_normalization.vi.taggers.word import WordFst
 from nemo_text_processing.text_normalization.vi.verbalizers.date import DateFst as vDateFst
 from nemo_text_processing.text_normalization.vi.verbalizers.ordinal import OrdinalFst as vOrdinalFst
@@ -131,11 +131,11 @@ class ClassifyFst(GraphFst):
             money_graph = MoneyFst(cardinal=cardinal, decimal=decimal, deterministic=deterministic).fst
             logger.debug(f"money: {time.time() - start_time: .2f}s -- {money_graph.num_states()} nodes")
 
-            # start_time = time.time()
-            # whitelist_graph = WhiteListFst(
-            #     input_case=input_case, deterministic=deterministic, input_file=whitelist
-            # ).fst
-            # logger.debug(f"whitelist: {time.time() - start_time: .2f}s -- {whitelist_graph.num_states()} nodes")
+            start_time = time.time()
+            whitelist_graph = WhiteListFst(
+                input_case=input_case, deterministic=deterministic, input_file=whitelist
+            ).fst
+            logger.debug(f"whitelist: {time.time() - start_time: .2f}s -- {whitelist_graph.num_states()} nodes")
 
             start_time = time.time()
             punctuation = PunctuationFst(deterministic=deterministic)
@@ -177,24 +177,9 @@ class ClassifyFst(GraphFst):
                 1,
             )
 
-            # classify = (
-            #     pynutil.add_weight(whitelist_graph, 1.01)
-            #     | pynutil.add_weight(time_graph, 1.1)
-            #     | pynutil.add_weight(date_graph, 1.09)
-            #     | pynutil.add_weight(decimal_graph, 1.1)
-            #     | pynutil.add_weight(measure_graph, 1.1)
-            #     | pynutil.add_weight(cardinal_graph, 1.1)
-            #     | pynutil.add_weight(ordinal_graph, 1.1)
-            #     | pynutil.add_weight(money_graph, 1.1)
-            #     | pynutil.add_weight(telephone_graph, 1.1)
-            #     | pynutil.add_weight(electonic_graph, 1.11)
-            #     | pynutil.add_weight(fraction_graph, 1.1)
-            #     | pynutil.add_weight(range_graph, 1.1)
-            #     | pynutil.add_weight(serial_graph, 1.12)  # should be higher than the rest of the classes
-            #     | pynutil.add_weight(graph_range_money, 1.1)
-            # )
             classify = (
-                pynutil.add_weight(time_graph, 1.1)
+                pynutil.add_weight(whitelist_graph, 1.01)
+                | pynutil.add_weight(time_graph, 1.1)
                 | pynutil.add_weight(date_graph, 1.09)
                 | pynutil.add_weight(decimal_graph, 1.1)
                 | pynutil.add_weight(measure_graph, 1.1)

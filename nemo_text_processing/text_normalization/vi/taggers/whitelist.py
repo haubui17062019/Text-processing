@@ -94,7 +94,7 @@ class WhiteListFst(GraphFst):
             )
 
         if not deterministic:
-            multiple_forms_whitelist_graph = get_formats(get_abs_path("data/whitelist/alternatives_all_format.tsv"))
+            multiple_forms_whitelist_graph = get_formats("./nemo_text_processing/text_normalization/vi/data/whitelist/alternatives_all_format.tsv")
             graph |= multiple_forms_whitelist_graph
 
             graph_unit = pynini.string_file(get_abs_path("data/measure/unit.tsv")) | pynini.string_file(
@@ -138,6 +138,7 @@ def get_formats(input_f, input_case=INPUT_CASED, is_default=True):
     """
     multiple_formats = load_labels(input_f)
     additional_options = []
+    print('[INFO] input_f: ', input_f)
     for x, y in multiple_formats:
         if input_case == INPUT_LOWER_CASED:
             x = x.lower()
