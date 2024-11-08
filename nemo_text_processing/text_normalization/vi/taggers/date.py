@@ -202,8 +202,8 @@ class DateFst(GraphFst):
         # three_digit_year = (NEMO_DIGIT @ cardinal_graph) + insert_space + (NEMO_DIGIT ** 2) @ cardinal_graph
         # year_graph |= three_digit_year
 
-        month_graph = pynutil.insert("month: \"") + month_graph + pynutil.insert("\"")
-        month_numbers_graph = pynutil.insert("month: \"") + month_numbers_labels + pynutil.insert("\"")
+        month_graph = pynutil.insert("tháng: \"") + month_graph + pynutil.insert("\"")
+        month_numbers_graph = pynutil.insert("tháng: \"") + month_numbers_labels + pynutil.insert("\"")
 
         endings = ["rd", "th", "st", "nd"]
         endings += [x.upper() for x in endings]
