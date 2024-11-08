@@ -24,7 +24,7 @@ from nemo_text_processing.text_normalization.vi.graph_utils import (
 
 from nemo_text_processing.text_normalization.vi.utils import get_abs_path
 
-per_units = pynini.string_file(get_abs_path("data/money/per_unit.tsv"))
+per_units = pynini.string_file("./nemo_text_processing/text_normalization/vi/data/money/per_unit.tsv")
 
 
 class MoneyFst(GraphFst):
