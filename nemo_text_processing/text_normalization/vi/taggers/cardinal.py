@@ -133,19 +133,19 @@ class CardinalFst(GraphFst):
             graph_with_and = pynutil.add_weight(graph, 0.00001)
             not_quote = pynini.closure(NEMO_NOT_QUOTE)
             no_thousand_million = pynini.difference(
-                not_quote, not_quote + pynini.union("thousand", "million") + not_quote
+                not_quote, not_quote + pynini.union("nghìn", "triệu") + not_quote
             ).optimize()
             integer = (
-                not_quote + pynutil.add_weight(pynini.cross("hundred ", "hundred and ") + no_thousand_million, -0.0001)
+                not_quote + pynutil.add_weight(pynini.cross("trăm ", "trăm và ") + no_thousand_million, -0.0001)
             ).optimize()
 
-            no_hundred = pynini.difference(NEMO_SIGMA, not_quote + pynini.accep("hundred") + not_quote).optimize()
+            no_hundred = pynini.difference(NEMO_SIGMA, not_quote + pynini.accep("trăm") + not_quote).optimize()
             integer |= (
-                not_quote + pynutil.add_weight(pynini.cross("thousand ", "thousand and ") + no_hundred, -0.0001)
+                not_quote + pynutil.add_weight(pynini.cross("nghìn ", "nghìn và ") + no_hundred, -0.0001)
             ).optimize()
 
             optional_hundred = pynini.compose((NEMO_DIGIT - "0") ** 3, graph).optimize()
-            optional_hundred = pynini.compose(optional_hundred, NEMO_SIGMA + pynini.cross(" hundred", "") + NEMO_SIGMA)
+            optional_hundred = pynini.compose(optional_hundred, NEMO_SIGMA + pynini.cross(" trăm", "") + NEMO_SIGMA)
             graph_with_and |= pynini.compose(graph, integer).optimize()
             graph_with_and |= optional_hundred
         return graph_with_and

@@ -69,7 +69,7 @@ class MoneyFst(GraphFst):
             pynutil.delete(".") + pynini.closure(pynutil.delete("0"), 1), 0, 1
         )
 
-        graph_integer_one = pynutil.insert('integer_part: "') + pynini.cross("1", "one") + pynutil.insert('"')
+        graph_integer_one = pynutil.insert('integer_part: "') + pynini.cross("1", "một") + pynutil.insert('"')
         # only for decimals where third decimal after comma is non-zero or with quantity
         decimal_delete_last_zeros = (
             pynini.closure(NEMO_DIGIT | pynutil.delete(","))
@@ -119,7 +119,7 @@ class MoneyFst(GraphFst):
             integer_plus_maj = pynini.compose(pynini.closure(NEMO_DIGIT) - "0", integer_plus_maj)
             integer_plus_maj |= integer_plus_maj_with_comma
 
-            graph_fractional_one = two_digits_fractional_part @ pynini.cross("1", "one")
+            graph_fractional_one = two_digits_fractional_part @ pynini.cross("1", "một")
             graph_fractional_one = pynutil.insert('fractional_part: "') + graph_fractional_one + pynutil.insert('"')
             graph_fractional = (
                 two_digits_fractional_part

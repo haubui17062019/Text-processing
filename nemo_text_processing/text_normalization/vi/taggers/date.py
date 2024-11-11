@@ -51,9 +51,9 @@ def get_ties_graph(deterministic: bool = True):
     graph = graph_teen | ties_graph + pynutil.delete("0") | ties_graph + insert_space + graph_digit
 
     if deterministic:
-        graph = graph | pynini.cross("0", "oh") + insert_space + graph_digit
+        graph = graph | pynini.cross("0", "không") + insert_space + graph_digit
     else:
-        graph = graph | (pynini.cross("0", "oh") | pynini.cross("0", "zero")) + insert_space + graph_digit
+        graph = graph | (pynini.cross("0", "không") | pynini.cross("0", "không")) + insert_space + graph_digit
 
     return graph.optimize()
 
@@ -69,29 +69,29 @@ def get_four_digit_year_graph(deterministic: bool = True):
 
     graph_with_s = (
         (graph_ties + insert_space + graph_ties)
-        | (graph_teen + insert_space + (ties_graph | pynini.cross("1", "ten")))
+        | (graph_teen + insert_space + (ties_graph | pynini.cross("1", "mười")))
     ) + pynutil.delete("0s")
 
-    graph_with_s |= (graph_teen | graph_ties) + insert_space + pynini.cross("00", "hundred") + pynutil.delete("s")
+    graph_with_s |= (graph_teen | graph_ties) + insert_space + pynini.cross("00", "trăm") + pynutil.delete("s")
     graph_with_s = graph_with_s @ pynini.cdrewrite(
         pynini.cross("y", "ies") | pynutil.insert("s"), "", "[EOS]", NEMO_SIGMA
     )
 
     graph = graph_ties + insert_space + graph_ties
-    graph |= (graph_teen | graph_ties) + insert_space + pynini.cross("00", "hundred")
+    graph |= (graph_teen | graph_ties) + insert_space + pynini.cross("00", "trăm")
 
     thousand_graph = (
         graph_digit
         + insert_space
-        + pynini.cross("00", "thousand")
+        + pynini.cross("00", "nghìn")
         + (pynutil.delete("0") | insert_space + graph_digit)
     )
     thousand_graph |= (
         graph_digit
         + insert_space
-        + pynini.cross("000", "thousand")
+        + pynini.cross("000", "nghìn")
         + pynini.closure(pynutil.delete(" "), 0, 1)
-        + pynini.accep("s")
+        # + pynini.accep("s")
     )
 
     graph |= graph_with_s
@@ -126,7 +126,7 @@ def _get_year_graph(cardinal_graph, deterministic: bool = True):
     123 A.D., 4200 B.C
     """
     graph = get_four_digit_year_graph(deterministic)
-    graph = (pynini.union("1", "2") + (NEMO_DIGIT ** 3) + pynini.closure(pynini.cross(" s", "s") | "s", 0, 1)) @ graph
+    # graph = (pynini.union("1", "2") + (NEMO_DIGIT ** 3) + pynini.closure(pynini.cross(" s", "s") | "s", 0, 1)) @ graph
 
     graph |= _get_two_digit_year_with_s_graph()
 
@@ -147,11 +147,11 @@ def _get_financial_period_graph():
     # 1H23 -> first half of twenty three
     # 3Q22 -> third quarter of twenty two
 
-    h_ordinals = pynini.cross('1', 'first') | pynini.cross('2', 'second')
-    q_ordinals = h_ordinals | pynini.cross('3', 'third') | pynini.cross('4', 'fourth')
+    h_ordinals = pynini.cross('1', 'thứ nhất') | pynini.cross('2', 'thứ hai')
+    q_ordinals = h_ordinals | pynini.cross('3', 'thứ ba') | pynini.cross('4', 'thứ tư')
 
-    h_graph = h_ordinals + pynini.cross('H', ' half')
-    q_graph = q_ordinals + pynini.cross('Q', ' quarter')
+    h_graph = h_ordinals + pynini.cross('H', ' một nửa')
+    q_graph = q_ordinals + pynini.cross('Q', ' một phần tư')
     period_graph = h_graph | q_graph
 
     return period_graph
@@ -202,8 +202,8 @@ class DateFst(GraphFst):
         # three_digit_year = (NEMO_DIGIT @ cardinal_graph) + insert_space + (NEMO_DIGIT ** 2) @ cardinal_graph
         # year_graph |= three_digit_year
 
-        month_graph = pynutil.insert("tháng: \"") + month_graph + pynutil.insert("\"")
-        month_numbers_graph = pynutil.insert("tháng: \"") + month_numbers_labels + pynutil.insert("\"")
+        month_graph = pynutil.insert("month: \"") + month_graph + pynutil.insert("\"")
+        month_numbers_graph = pynutil.insert("month: \"") + month_numbers_labels + pynutil.insert("\"")
 
         endings = ["rd", "th", "st", "nd"]
         endings += [x.upper() for x in endings]

@@ -45,33 +45,7 @@ NEMO_PUNCT = pynini.union(*map(pynini.escape, string.punctuation)).optimize()
 NEMO_GRAPH = pynini.union(NEMO_ALNUM, NEMO_PUNCT).optimize()
 
 NEMO_SIGMA = pynini.closure(NEMO_CHAR)
-NEMO_LOWER_NOT_A = pynini.union(
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-).optimize()
+NEMO_NOT_ALPHA = pynini.difference(NEMO_SIGMA, NEMO_ALPHA).optimize()
 
 delete_space = pynutil.delete(pynini.closure(NEMO_WHITE_SPACE))
 delete_zero_or_one_space = pynutil.delete(pynini.closure(NEMO_WHITE_SPACE, 0, 1))
@@ -105,9 +79,12 @@ suppletive = pynini.string_file(get_abs_path("data/suppletive.tsv"))
 _c = pynini.union(
     "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z",
 )
-_ies = NEMO_SIGMA + _c + pynini.cross("y", "ies")
-_es = NEMO_SIGMA + pynini.union("s", "sh", "ch", "x", "z") + pynutil.insert("es")
-_s = NEMO_SIGMA + pynutil.insert("s")
+# _ies = NEMO_SIGMA + _c + pynini.cross("y", "ies")
+# _es = NEMO_SIGMA + pynini.union("s", "sh", "ch", "x", "z") + pynutil.insert("es")
+# _s = NEMO_SIGMA + pynutil.insert("s")
+_ies = NEMO_SIGMA
+_es = NEMO_SIGMA
+_s = NEMO_SIGMA
 
 graph_plural = plurals._priority_union(
     suppletive, plurals._priority_union(_ies, plurals._priority_union(_es, _s, NEMO_SIGMA), NEMO_SIGMA), NEMO_SIGMA,
@@ -212,7 +189,7 @@ def string_map_cased(input_file: str, input_case: str = INPUT_LOWER_CASED):
                     [written_capitalized, spoken.capitalize(),],  # first letter capitalized
                     [
                         written_capitalized,
-                        spoken.upper().replace(" AND ", " and "),
+                        spoken.upper().replace(" VÀ ", " và "),
                     ],  # # add pairs with the all letters capitalized
                 ]
             )

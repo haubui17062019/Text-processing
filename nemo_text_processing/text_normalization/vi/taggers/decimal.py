@@ -35,9 +35,9 @@ def get_quantity(
         decimal: decimal FST
         cardinal_up_to_hundred: cardinal FST
     """
-    quantity_wo_thousand = pynini.project(quantities, "input") - pynini.union("k", "K", "thousand")
+    quantity_wo_thousand = pynini.project(quantities, "input") - pynini.union("k", "K", "nghìn")
     if include_abbr:
-        quantity_wo_thousand |= pynini.project(quantities_abbr, "input") - pynini.union("k", "K", "thousand")
+        quantity_wo_thousand |= pynini.project(quantities_abbr, "input") - pynini.union("k", "K", "nghìn")
     res = (
         pynutil.insert("integer_part: \"")
         + cardinal_up_to_hundred
@@ -108,8 +108,8 @@ class DecimalFst(GraphFst):
         if not deterministic:
             no_oh_zero = pynini.difference(
                 NEMO_SIGMA,
-                (NEMO_SIGMA + "oh" + NEMO_SIGMA + "zero" + NEMO_SIGMA)
-                | (NEMO_SIGMA + "zero" + NEMO_SIGMA + "oh" + NEMO_SIGMA),
+                (NEMO_SIGMA + "không" + NEMO_SIGMA + "zero" + NEMO_SIGMA)
+                | (NEMO_SIGMA + "zero" + NEMO_SIGMA + "không" + NEMO_SIGMA),
             ).optimize()
             no_zero_oh = pynini.difference(
                 NEMO_SIGMA, NEMO_SIGMA + pynini.accep("zero") + NEMO_SIGMA + pynini.accep("oh") + NEMO_SIGMA
