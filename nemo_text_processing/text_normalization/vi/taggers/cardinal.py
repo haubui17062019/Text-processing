@@ -44,14 +44,14 @@ class CardinalFst(GraphFst):
         self.lm = lm
         self.deterministic = deterministic
         # TODO replace to have "oh" as a default for "0"
-        graph = pynini.Far(get_abs_path("data/number/cardinal_number_name.far")).get_fst()
-        graph_au = pynini.Far(get_abs_path("data/number/cardinal_number_name_au.far")).get_fst()
+        graph = pynini.Far("./nemo_text_processing/text_normalization/vi/data/number/cardinal_number_name.far").get_fst()
+        graph_au = pynini.Far("./nemo_text_processing/text_normalization/vi/data/number/cardinal_number_name_au.far").get_fst()
         self.graph_hundred_component_at_least_one_none_zero_digit = (
             pynini.closure(NEMO_DIGIT, 2, 3) | pynini.difference(NEMO_DIGIT, pynini.accep("0"))
         ) @ graph
 
-        graph_digit = pynini.string_file(get_abs_path("data/number/digit.tsv"))
-        graph_zero = pynini.string_file(get_abs_path("data/number/zero.tsv"))
+        graph_digit = pynini.string_file("./nemo_text_processing/text_normalization/vi/data/number/digit.tsv")
+        graph_zero = pynini.string_file("./nemo_text_processing/text_normalization/vi/data/number/zero.tsv")
 
         single_digits_graph = pynini.invert(graph_digit | graph_zero)
         self.single_digits_graph = single_digits_graph + pynini.closure(insert_space + single_digits_graph)
